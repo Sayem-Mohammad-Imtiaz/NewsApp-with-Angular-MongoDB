@@ -1,4 +1,4 @@
-package com.sayem.controller;
+package com.sayem.controller.rest;
 
 import com.sayem.model.News;
 import com.sayem.service.NewsService;
