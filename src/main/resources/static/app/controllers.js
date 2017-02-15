@@ -1,24 +1,24 @@
 /**
  * Created by sayem on 2/14/2017.
  */
-(function(angular) {
+(function (angular) {
 
-    var module=angular.module("newsApp");
+    var module = angular.module("newsApp");
 
-    module.controller("newsController", function ($scope,newsService) {
-        $scope.isNewsAdded=false;
-        $scope.isNewsSaveFailed=false;
+    var newsController = module.controller("newsController", function ($scope, newsService) {
+        $scope.service = new newsService;
+        $scope.isNewsAdded = false;
+        $scope.isNewsSaveFailed = false;
 
-        $scope.addNews=function(news)
-        {
-            news.$save(function()
-            {
-                $scope.isNewsAdded=true;
-            }, function(err)
-            {
-                $scope.isNewsSaveFailed=true;
+        $scope.addNews = function (news) {
+            $scope.service.$save(news, function () {
+                $scope.isNewsAdded = true;
+            }, function (err) {
+                $scope.isNewsSaveFailed = true;
             });
         }
     });
 
+   // newsController.$inject = ['$scope', 'newsService'];
+    //angular.module("newsApp.controllers").controller("newsController", newsController);
 }(angular));

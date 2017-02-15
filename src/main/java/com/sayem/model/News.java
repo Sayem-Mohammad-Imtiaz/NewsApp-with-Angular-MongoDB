@@ -6,7 +6,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * Created by sayem on 2/12/2017.
  */
-@Document
+@Document(collection = "counters")
 public class News {
     @Id
     private Integer id;

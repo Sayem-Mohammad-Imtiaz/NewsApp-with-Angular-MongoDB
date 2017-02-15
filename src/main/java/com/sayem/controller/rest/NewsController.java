@@ -25,6 +25,7 @@ public class NewsController {
             if (newsService.saveNews(news) == false)
                 throw new Exception();
         } catch (Exception ex) {
+            ex.printStackTrace();
             return new ResponseEntity<>(false, HttpStatus.INTERNAL_SERVER_ERROR);
         }
         return new ResponseEntity<>(true, HttpStatus.OK);

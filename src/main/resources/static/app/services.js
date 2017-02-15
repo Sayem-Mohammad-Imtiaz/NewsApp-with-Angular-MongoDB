@@ -4,12 +4,14 @@
 (function(angular) {
     var module=angular.module("newsApp");
 
-    module.factory("newsService", function($resource)
+    var newsService=module.factory("newsService", [ '$resource', function($resource)
     {
-        return $resource('/rest/news/:id', {id: '@id'}, {
+        return $resource('/news/:id', {id: '@id'}, {
             update: {
                 method: 'PUT'
             }
         });
-    });
+    }]);
+
+   // angular.module("newsApp.services").controller("newsService", newsService);
 }(angular));

@@ -29,6 +29,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
         try {
             mongoTemplate.save(t);
         } catch (Exception ex) {
+            ex.printStackTrace();
             ret = false;
         }
         return ret;
