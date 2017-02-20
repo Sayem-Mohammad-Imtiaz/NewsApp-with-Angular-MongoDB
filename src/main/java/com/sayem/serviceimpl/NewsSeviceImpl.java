@@ -1,6 +1,7 @@
 package com.sayem.serviceimpl;
 
 import com.sayem.dao.NewsDao;
+import com.sayem.dao.SequenceDao;
 import com.sayem.model.News;
 import com.sayem.service.NewsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,9 +16,12 @@ import java.util.List;
 public class NewsSeviceImpl implements NewsService {
     @Autowired
     NewsDao newsDao;
+    @Autowired
+    protected SequenceDao sequenceDao;
 
     @Override
     public boolean saveNews(News news) {
+        news.setId(sequenceDao.getNextSequence("news"));
         return newsDao.save(news);
     }
 

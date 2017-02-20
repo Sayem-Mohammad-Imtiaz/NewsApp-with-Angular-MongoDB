@@ -6,12 +6,11 @@
     var module = angular.module("newsApp");
 
     var newsController = module.controller("newsController", function ($scope, newsService) {
-        $scope.service = new newsService;
         $scope.isNewsAdded = false;
         $scope.isNewsSaveFailed = false;
 
         $scope.addNews = function (news) {
-            $scope.service.$save(news, function () {
+            new newsService(news).$save(function () {
                 $scope.isNewsAdded = true;
             }, function (err) {
                 $scope.isNewsSaveFailed = true;

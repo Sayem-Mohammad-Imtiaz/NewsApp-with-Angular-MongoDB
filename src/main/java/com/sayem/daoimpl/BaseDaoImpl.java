@@ -1,6 +1,7 @@
 package com.sayem.daoimpl;
 
 import com.sayem.dao.BaseDao;
+import com.sayem.dao.SequenceDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
@@ -13,6 +14,7 @@ import java.util.List;
 public class BaseDaoImpl<T> implements BaseDao<T> {
     @Autowired
     protected MongoTemplate mongoTemplate;
+
     protected Class<T> clazz;
 
     public BaseDaoImpl() {

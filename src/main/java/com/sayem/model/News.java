@@ -6,19 +6,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 /**
  * Created by sayem on 2/12/2017.
  */
-@Document(collection = "counters")
+@Document
 public class News {
     @Id
-    private Integer id;
+    private Long id;
     private String title;
     private String description;
     private String author;
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
