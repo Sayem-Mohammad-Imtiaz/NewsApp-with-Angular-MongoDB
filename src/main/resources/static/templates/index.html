@@ -1,59 +1,45 @@
 <!DOCTYPE html>
 <html ng-app="newsApp" lang="en">
-<head >
+<head>
     <meta charset="UTF-8"/>
     <title>NewsApp</title>
-    <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="./bower_components/font-awesome/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="./bower_components/bootstrap-css-only/css/bootstrap.min.css"/>
+
 </head>
 
 <body>
+<ng-include src="'./templates/common/header.html'"></ng-include>
 
-<div class="container" style="margin:20px;" ng-controller="newsController">
-
-    <div class="row" ng-hide="!isNewsAdded">
-        <div class="col-sm-6 col-sm-offset-3 ">
-            <h4 class="text-success well well-sm text-center">News added successfully</h4>
+<div class="container" ng-controller="newsController" ng-init="query()">
+    <div class="row">
+        <div class="col-sm-12">
+            <span style="font-size: 22px;font-weight: bold" ng-show="newsList.length <= 0">No story found</span>
+                <span style="font-weight: bold" ng-show="newsList.length > 0">
+                    Showing {{newsList.length}} <span ng-show="newsList.length == 0">story</span><span
+                        ng-show="newsList.length > 0">stories</span></span>
         </div>
     </div>
-    <div class="row" ng-hide="!isNewsSaveFailed ">
-        <div class="col-sm-6 col-sm-offset-3">
-            <h4 class="text-danger well well-sm text-center">News couldn't be saved</h4>
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-striped table-hover">
+                <tbody>
+                <tr ng-repeat="news in newsList">
+                    <td>
+                        <h4 class="pull-left"><i class="fa fa-newspaper-o"></i> Story {{$index+1}}:
+                            {{news.title}} </h4>
+                        <!--<p class="pull-right" style="font-style: italic;"-->
+                        <!--th:text="${#dates.format(data.publishDate, 'dd MMM, yyyy')}"></p>-->
+                        <div style="clear:both"></div>
+                        <span><a href="#">html</a></span> | <span>
+                            <a href="#">json</a></span> | <span>
+                            <a href="#">xml</a></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
         </div>
     </div>
-
-    <form class="form-horizontal" role="form" ng-submit="addNews(news)">
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Title</label>
-
-            <div class="col-sm-8">
-                <input type="text" ng-model="news.title" class="form-control" placeholder="Title" ng-disabled="isNewsAdded" maxlength="255" required="true"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Author</label>
-
-            <div class="col-sm-8">
-                <input type="text" ng-model="news.author" class="form-control" placeholder="Author" ng-disabled="isNewsAdded" maxlength="255" required="true"/>
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-2 control-label">Description</label>
-
-            <div class="col-sm-8">
-
-                    <textarea ng-model="news.description" class="form-control" placeholder="Description" rows="8"
-                              maxlength="1000" ng-disabled="isNewsAdded"></textarea>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-sm-offset-2 col-sm-8">
-                <button type="submit" class="btn btn-primary btn-outline btn-flat pull-right"
-                        ng-disabled="isNewsAdded"><i class="fa fa-plus"></i>Add</button>
-            </div>
-        </div>
-    </form>
-
 </div>
 
 <script type="text/javascript" src="./bower_components/angular/angular.min.js"></script>
