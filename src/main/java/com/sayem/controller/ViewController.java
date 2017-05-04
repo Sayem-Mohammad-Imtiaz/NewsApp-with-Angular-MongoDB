@@ -13,10 +13,4 @@ public class ViewController {
     {
         return "templates/index.html";
     }
-
-    @GetMapping("addStory")
-    public String getAddStoryView()
-    {
-        return "templates/add_story.html";
-    }
 }
